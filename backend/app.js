@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const userRouter = require("./routes/User-routes");
 const app = express();
-//const dotenv=require("dotenv");
 app.use(express.json());
 app.use("/users", userRouter);
 
