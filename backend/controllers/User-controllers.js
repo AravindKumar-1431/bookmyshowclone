@@ -15,16 +15,16 @@ const getAllusers = async (req, res, next) => {
   return res.status(200).json({ users });
 };
 
-const userSignup = async (req, res, next) => {
+const userSignup = async (req, res) => {
   try {
-    const { fullname, email, password, confrimpassword } = req.body;
+    const { fullname, email, password, confirmPassword } = req.body;
 
     const exist = await Users.findOne({ email });
     if (exist) {
       return res.status(200).send("user already exist");
     }
 
-    if (password != confrimpassword) {
+    if (password != confirmPassword) {
       return res.status(200).send("password not matched");
     }
 
@@ -35,8 +35,8 @@ const userSignup = async (req, res, next) => {
       email.trim() == "" &&
       !password &&
       password.trim() === "" &&
-      !confrimpassword &&
-      confrimpassword.trim() === ""
+      !confirmPassword &&
+      confirmPassword.trim() === ""
     ) {
       return res.status(200).send("invalid inputs");
     }
@@ -45,7 +45,7 @@ const userSignup = async (req, res, next) => {
       fullname,
       email,
       password: hashpassword,
-      confrimpassword: hashpassword,
+      confirmPassword: hashpassword,
     });
     signup.save();
 

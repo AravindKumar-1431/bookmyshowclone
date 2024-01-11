@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 
-const usersignupSchema = new mongoose.Schema({
-  fullname: {
-    type: String,
-    require: true,
-  },
+const AdminsignupSchema = new mongoose.Schema({
   email: {
     type: String,
     require: true,
@@ -14,9 +10,11 @@ const usersignupSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  confirmPassword: {
+  confrimpassword: {
     type: String,
     require: true,
   },
+  AddedMovies: [{ type: String, require: true }],
 });
-module.exports = mongoose.model("Users", usersignupSchema);
+
+module.exports = mongoose.model("Admin", AdminsignupSchema);
